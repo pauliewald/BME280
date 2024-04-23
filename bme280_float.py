@@ -255,3 +255,18 @@ class BME280:
 
         return ("{:.2f}C".format(t), "{:.2f}hPa".format(p/100),
                 "{:.2f}%".format(h))
+    
+    @property
+    def pressure(self):
+        p = self.read_compensated_data()[1]
+        return "{:.1f} hPa".format(p/100)
+    
+    @property
+    def temperature(self):
+        t = self.read_compensated_data()[0]
+        return "{:.2f} C".format(t)
+    
+    @property
+    def humidity(self):
+        h = self.read_compensated_data()[2]
+        return "{:.1f} %".format(h)
